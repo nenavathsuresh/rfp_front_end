@@ -463,13 +463,13 @@ export function RfpWorkspacePage({ onOpenChatbot }: RfpWorkspacePageProps) {
                   <p className="mt-1 text-sm leading-6 text-slate-600">Open the chatbot for Q&A or run the backend workflow for structured results.</p>
                 </div>
                 <div className="grid gap-2 sm:grid-cols-2">
-                  {/* <button
+                 <button
                     type="button"
                     onClick={onOpenChatbot}
                     className="rounded-md border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-bold text-blue-700 shadow-sm transition hover:border-blue-300 hover:bg-blue-100"
                   >
                     Chatbot
-                  </button> */}
+                  </button>
                   <button
                     type="button"
                     onClick={runWorkflow}
