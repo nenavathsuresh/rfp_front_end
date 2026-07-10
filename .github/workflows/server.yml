@@ -135,6 +135,8 @@ jobs:
           context: .
           file: client.Dockerfile
           push: true
+          build-args: |
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL || 'https://rf-8de94c3f4d344d93b5413a002d7e432d.ecs.eu-north-1.on.aws' }}
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.env.outputs.env_name }}-latest
             ${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ steps.env.outputs.env_name }}-${{ github.sha }}

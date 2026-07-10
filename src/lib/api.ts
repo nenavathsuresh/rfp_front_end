@@ -1,5 +1,13 @@
 ﻿import type { ApiDuplicate, ApiFile, DuplicateItem, FileStatus, UploadedFile } from '../types'
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+
+export function buildApiUrl(path: string) {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  if (!API_BASE_URL) return normalizedPath
+  return `${API_BASE_URL}${normalizedPath}`
+}
+
 export async function api<T>(method: string, path: string, body?: FormData | object): Promise<T> {
   const options: RequestInit = { method, headers: {} }
 
@@ -10,7 +18,7 @@ export async function api<T>(method: string, path: string, body?: FormData | obj
     options.body = JSON.stringify(body)
   }
 
-  const response = await fetch(path, options)
+  const response = await fetch(buildApiUrl(path), options)
   if (!response.ok) {
     let message = 'API request failed'
     try {

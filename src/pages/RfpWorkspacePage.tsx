@@ -10,7 +10,7 @@ import { RejectedFilesModal } from '../components/modals/RejectedFilesModal'
 import { WorkspaceModal } from '../components/modals/WorkspaceModal'
 import { WorkflowResultsTable, type WorkflowResult } from '../components/WorkflowResultsTable'
 import { allowedExtensions } from '../lib/constants'
-import { api, getErrorMessage, getFileExtension, normalizeDuplicate, normalizeFile, now } from '../lib/api'
+import { api, buildApiUrl, getErrorMessage, getFileExtension, normalizeDuplicate, normalizeFile, now } from '../lib/api'
 import type { ApiDuplicate, ApiFile, AppAlert, AlertType, DuplicateItem, LogEntry, UploadedFile } from '../types'
 
 type RfpWorkspacePageProps = {
@@ -276,7 +276,7 @@ export function RfpWorkspacePage({ onOpenChatbot }: RfpWorkspacePageProps) {
     addLog('Running RFP workflow stream', 'info')
 
     try {
-      const response = await fetch('/api/workflow/run/stream', {
+      const response = await fetch(buildApiUrl('/api/workflow/run/stream'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ index_path: workflowIndexPath }),
