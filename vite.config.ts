@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8000',
+        target: 'https://rf-8de94c3f4d344d93b5413a002d7e432d.ecs.eu-north-1.on.aws/',
         changeOrigin: true,
       },
     },
